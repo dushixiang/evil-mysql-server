@@ -14,6 +14,8 @@ import (
 	"strings"
 )
 
+const Version = "v0.0.1"
+
 var addr = flag.String("addr", "0.0.0.0:3306", "listen addr")
 var javaBinPath = flag.String("java", "java", "java bin path")
 var ysoserialPath = flag.String("ysoserial", "ysoserial-0.0.6-SNAPSHOT-all.jar", "ysoserial bin path")
@@ -268,7 +270,7 @@ func Start() {
 	if !strings.Contains(listenAddr, ":") {
 		listenAddr = "0.0.0.0:" + listenAddr
 	}
-	log.Printf("[-] evil mysql server listen on %s\n", listenAddr)
+	log.Printf("[-] evil mysql server %s listen on %s\n", Version, listenAddr)
 	ln, err := net.Listen("tcp", listenAddr)
 	if err != nil {
 		log.Printf("[x] listen error [%s]\n", err.Error())
