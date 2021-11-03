@@ -133,7 +133,7 @@ func ReverseHex(s string) string {
 	return string(*a)
 }
 
-func IntEncode(number int) (string, error) {
+func IntEncode(number int64) (string, error) {
 	if number < 256 {
 		return ReverseHex(fmt.Sprintf("%02x", number)), nil
 	} else if number < 65536 {
@@ -148,7 +148,7 @@ func IntEncode(number int) (string, error) {
 }
 
 func StrEncode(d []byte) []byte {
-	l, err := IntEncode(len(d))
+	l, err := IntEncode(int64(len(d)))
 	if err != nil {
 		return nil
 	}
