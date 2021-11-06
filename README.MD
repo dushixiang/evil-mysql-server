@@ -9,7 +9,7 @@ English | [简体中文](./README-zh_CN.md)
 Usage
 
 ```shell
-. /evil-mysql-server -addr 3306 -java java -ysoserial ysoserial-0.0.6-SNAPSHOT-all.jar
+./evil-mysql-server -addr 3306 -java java -ysoserial ysoserial-0.0.6-SNAPSHOT-all.jar
 ```
 
 After successful startup use jdbc to connect, where the username format is `yso_payload_command`, after successful connection **evil-mysql-server** will parse the username and generate malicious data back to the jdbc client using the following command.
