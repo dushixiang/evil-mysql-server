@@ -39,4 +39,4 @@ jdbc:mysql://127.0.0.1:3306/test?autoDeserialize=true&queryInterceptors=com.mysq
 
 Thanks to the following projects for the inspiration
 
-- [!MySQL_Fake_Server](https://github.com/fnmsd/MySQL_Fake_Server)
+- [MySQL_Fake_Server](https://github.com/fnmsd/MySQL_Fake_Server)
