@@ -14,7 +14,7 @@ import (
 	"strings"
 )
 
-const Version = "v0.0.1"
+const Version = "v0.0.2"
 
 var addr = flag.String("addr", "0.0.0.0:3306", "listen addr")
 var javaBinPath = flag.String("java", "java", "java bin path")
